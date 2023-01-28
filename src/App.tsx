@@ -1,14 +1,36 @@
 import React from "react";
 import "./App.css";
 
+interface Object {
+  id: number;
+  advice: string;
+}
+
 const App: React.FC = () => {
-  let advice: string =
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit.";
+  const getAdvice = async () => {
+    try {
+      const response: Promise<Response> = fetch(
+        "https://api.adviceslip.com/advice"
+      );
+      const json = (await response).json();
+      const slip = await json;
+      const data = await slip;
+      const adviceObject: Object = {
+        id: data.slip.id,
+        advice: data.slip.advice,
+      };
+      return adviceObject;
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <div className="App">
       <div className="advice-box">
         <h4 className="advice-box__advice-number">Advice #1</h4>
-        <h1 className="advice-box__advice">"{advice}"</h1>
+        <h1 className="advice-box__advice">"{}"</h1>
         <svg
           className="no-show--mobile divider"
           width="444"
@@ -23,7 +45,12 @@ const App: React.FC = () => {
             </g>
           </g>
         </svg>
-        <svg className="no-show--desktop divider" width="295" height="16" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="no-show--desktop divider"
+          width="295"
+          height="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <g fill="none" fill-rule="evenodd">
             <path fill="#4F5D74" d="M0 8h122v1H0zM173 8h122v1H173z" />
             <g transform="translate(138)" fill="#CEE3E9">
