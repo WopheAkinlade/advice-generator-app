@@ -71,4 +71,4 @@ setAdviceObject(adviceObject); // The data in the promise function can now be ac
 
 ## Acknowledgments
 
-Many thanks to my good friend [Don(check out his Github page)](https://github.com/Multimarix) who helped me out with some of the React code I was unfamiliar with.
+Many thanks to my good friend Don[(check out his Github page)](https://github.com/Multimarix) who helped me out with some of the React code I was unfamiliar with.
