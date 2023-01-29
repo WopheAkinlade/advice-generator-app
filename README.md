@@ -13,8 +13,6 @@ This is a solution to the [Advice generator app challenge on Frontend Mentor](ht
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -39,8 +37,6 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
-
 ### What I learned
 
 I learned how to use `fetch` to call APIs and also how to extract data from a `Promise` function
@@ -56,26 +52,23 @@ const response: Promise<Response = fetch(
 ###### Extraction of data from a `Promise` function
 
 ```js
-const [adviceObject, setAdviceObject] = useState<adviceObject>({
+const [adviceObject, setAdviceObject] =
+  useState <
+  adviceObject >
+  {
     id: 1,
     advice: "",
-  }); // A global state was created 
+  }; // A global state was created
 
-  setAdviceObject(adviceObject); // The data in the promise function can now be accessed all over App as a global state 
+setAdviceObject(adviceObject); // The data in the promise function can now be accessed all over App as a global state
 ```
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ## Author
 
 - Website - [Wofe Akinlade](https://wophe1.netlify.app/)
 - Frontend Mentor - [@WopheAkinlade](https://www.frontendmentor.io/profile/WopheAkinlade)
-- Twitter - [@NinjaAkuma_](https://www.twitter.com/NinjaAkuma_)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+- Twitter - [@NinjaAkuma\_](https://www.twitter.com/NinjaAkuma_)
 
 ## Acknowledgments
 
-Many thanks to my good friend [Don](https://github.com/Multimarix) who helped me out with some of the React code I was unfamiliar with. 
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+Many thanks to my good friend [Don(check out his Github page)](https://github.com/Multimarix) who helped me out with some of the React code I was unfamiliar with.
