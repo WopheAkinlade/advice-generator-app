@@ -1,43 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
-interface Object {
+interface adviceObject {
   id: number;
   advice: string;
 }
 
 const App: React.FC = () => {
+  const [adviceObject, setAdviceObject] = useState<adviceObject>({
+    id: 1,
+    advice: "",
+  });
+
   const getAdvice = async () => {
     try {
       const response: Promise<Response> = fetch(
         "https://api.adviceslip.com/advice"
       );
       const json = (await response).json();
-      const slip = await json;
-      const data = await slip;
-      const adviceObject: Object = {
-        id: data.slip.id,
-        advice: data.slip.advice,
+      const {
+        slip: { id, advice },
+      } = await json;
+      const adviceObject: adviceObject = {
+        id,
+        advice,
       };
-      return adviceObject;
+      setAdviceObject(adviceObject);
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
       }
     }
   };
+
+  useEffect(() => {
+    getAdvice();
+  }, []);
+
   return (
     <div className="App">
       <div className="advice-box">
-        <h4 className="advice-box__advice-number">Advice #1</h4>
-        <h1 className="advice-box__advice">"{}"</h1>
+        {adviceObject.advice !== "" && (
+          <>
+            <h4 className="advice-box__advice-number">Advice #{adviceObject.id}</h4>
+            <h1 className="advice-box__advice">"{adviceObject.advice}"</h1>
+          </>
+        )}
         <svg
           className="no-show--mobile divider"
           width="444"
           height="16"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g fill="none" fill-rule="evenodd">
+          <g fill="none" fillRule="evenodd">
             <path fill="#4F5D74" d="M0 8h196v1H0zM248 8h196v1H248z" />
             <g transform="translate(212)" fill="#CEE3E9">
               <rect width="6" height="16" rx="3" />
@@ -51,7 +66,7 @@ const App: React.FC = () => {
           height="16"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g fill="none" fill-rule="evenodd">
+          <g fill="none" fillRule="evenodd">
             <path fill="#4F5D74" d="M0 8h122v1H0zM173 8h122v1H173z" />
             <g transform="translate(138)" fill="#CEE3E9">
               <rect width="6" height="16" rx="3" />
@@ -59,7 +74,7 @@ const App: React.FC = () => {
             </g>
           </g>
         </svg>
-        <button className="advice-box__btn">
+        <button className="advice-box__btn" onClick={getAdvice}>
           <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"
